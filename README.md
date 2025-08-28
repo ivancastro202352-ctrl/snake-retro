@@ -4,12 +4,12 @@ Un **juego clásico de Snake** hecho en HTML, CSS y JavaScript.
 Diseñado con un estilo **retro matrix**: fondo negro absoluto y píxeles verdes 💚.
 
 ## 🎮 Jugar ahora
-👉 [Haz clic aquí para jugar](https://TU-USUARIO.github.io/snake-retro/)  
+👉 [Haz clic aquí para jugar](https://ivancastro202352-ctrl.github.io/serpiente-retro/)  
 
 *(Recuerda cambiar `TU-USUARIO` por tu nombre en GitHub)*
 
 ## 📸 Vista previa
-![Snake Retro Screenshot](https://raw.githubusercontent.com/TU-USUARIO/snake-retro/main/screenshot.png)
+![Snake Retro Screenshot](https://raw.githubusercontent.com/ivancastro202352-ctrl/serpiente-retro/main/screenshot.png)
 
 ## 🚀 Características
 - Interfaz retro en estilo "matrix".
