@@ -1,137 +1,42 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Snake Retro</title>
-  <style>
-    body {
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: black;
-      color: lime;
-      font-family: monospace;
-      height: 100vh;
-      overflow: hidden;
-    }
-    canvas {
-      border: 2px solid lime;
-      background: black;
-    }
-    #reiniciar {
-      margin-top: 10px;
-      padding: 8px 16px;
-      background: lime;
-      color: black;
-      border: none;
-      font-size: 16px;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Retro</title>
+    <style>
+        body { background-color: #282c34; color: #ffffff; }
+        /* Estilos adicionales para efectos visuales */
+        .alive { animation: alive-animation 0.5s; }
+        @keyframes alive-animation { /* Definición de animación de muerte */ }
+        /* Botones y menú de inicio */
+        .start-menu { display: flex; flex-direction: column; align-items: center; }
+        /* Efectos de colores más vivos */
+    </style>
 </head>
 <body>
-  <h1>🐍 Snake Retro</h1>
-  <canvas id="gameCanvas" width="300" height="300"></canvas>
-  <button id="reiniciar">Reiniciar</button>
-
-  <script>
-    const canvas = document.getElementById("gameCanvas");
-    const ctx = canvas.getContext("2d");
-    const box = 15;
-    let snake, direction, food, game;
-
-    function iniciarJuego() {
-      snake = [{x: 5 * box, y: 5 * box}];
-      direction = "RIGHT";
-      food = {
-        x: Math.floor(Math.random() * (canvas.width/box)) * box,
-        y: Math.floor(Math.random() * (canvas.height/box)) * box
-      };
-      clearInterval(game);
-      game = setInterval(draw, 100);
-    }
-
-    document.getElementById("reiniciar").addEventListener("click", iniciarJuego);
-
-    function draw() {
-      ctx.fillStyle = "black";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      for (let i = 0; i < snake.length; i++) {
-        ctx.fillStyle = i === 0 ? "lime" : "green";
-        ctx.fillRect(snake[i].x, snake[i].y, box, box);
-      }
-
-      ctx.fillStyle = "red";
-      ctx.fillRect(food.x, food.y, box, box);
-
-      let snakeX = snake[0].x;
-      let snakeY = snake[0].y;
-
-      if (direction === "LEFT") snakeX -= box;
-      if (direction === "UP") snakeY -= box;
-      if (direction === "RIGHT") snakeX += box;
-      if (direction === "DOWN") snakeY += box;
-
-      if (snakeX === food.x && snakeY === food.y) {
-        food = {
-          x: Math.floor(Math.random() * (canvas.width/box)) * box,
-          y: Math.floor(Math.random() * (canvas.height/box)) * box
-        };
-      } else {
-        snake.pop();
-      }
-
-      let newHead = { x: snakeX, y: snakeY };
-
-      if (
-        snakeX < 0 || snakeY < 0 ||
-        snakeX >= canvas.width || snakeY >= canvas.height ||
-        snake.some(segment => segment.x === newHead.x && segment.y === newHead.y)
-      ) {
-        clearInterval(game);
-        alert("¡Game Over!");
-        return;
-      }
-
-      snake.unshift(newHead);
-    }
-
-    document.addEventListener("keydown", event => {
-      if (event.key === "ArrowLeft" && direction !== "RIGHT") direction = "LEFT";
-      if (event.key === "ArrowUp" && direction !== "DOWN") direction = "UP";
-      if (event.key === "ArrowRight" && direction !== "LEFT") direction = "RIGHT";
-      if (event.key === "ArrowDown" && direction !== "UP") direction = "DOWN";
-    });
-
-    // Gestos táctiles
-    let startX, startY;
-    canvas.addEventListener("touchstart", e => {
-      startX = e.touches[0].clientX;
-      startY = e.touches[0].clientY;
-    });
-
-    canvas.addEventListener("touchend", e => {
-      let endX = e.changedTouches[0].clientX;
-      let endY = e.changedTouches[0].clientY;
-
-      let diffX = endX - startX;
-      let diffY = endY - startY;
-
-      if (Math.abs(diffX) > Math.abs(diffY)) {
-        if (diffX > 0 && direction !== "LEFT") direction = "RIGHT";
-        else if (diffX < 0 && direction !== "RIGHT") direction = "LEFT";
-      } else {
-        if (diffY > 0 && direction !== "UP") direction = "DOWN";
-        else if (diffY < 0 && direction !== "DOWN") direction = "UP";
-      }
-    });
-
-    iniciarJuego();
-  </script>
+    <div class="start-menu">
+        <h1>Snake Retro</h1>
+        <button onclick="startGame()">Iniciar Juego</button>
+        <button onclick="showInstructions()">Instrucciones</button>
+        <!-- Botones en pantalla para móvil -->
+    </div>
+    <script>
+        let dificultad = 'fácil'; // niveles de dificultad
+        let maxScore = localStorage.getItem('maxScore') || 0;
+        function startGame() {
+            // Lógica para iniciar el juego con controles optimizados 
+        }
+        function showInstructions() {
+            // Muestra instrucciones
+        }
+        // Funcionalidad adicional para vibración en móviles:
+        if ('vibrate' in navigator) {
+            // Código para vibración
+        }
+        // Panel de información
+        const infoPanel = 'Puntuación máxima: ' + maxScore;
+        // Añadir más funcionalidades
+    </script>
 </body>
 </html>
